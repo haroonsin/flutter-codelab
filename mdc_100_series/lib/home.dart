@@ -14,6 +14,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'supplemental/asymmetric_view.dart';
 
 import 'model/product.dart';
 import 'model/products_repository.dart';
@@ -37,6 +38,7 @@ class HomePage extends StatelessWidget {
       return Card(
         clipBehavior: Clip.antiAlias,
         // TODO: Adjust card heights (103)
+        elevation: 0.0,
         child: Column(
           // TODO: Center items on the card (103)
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,19 +59,25 @@ class HomePage extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
                 child: Column(
                   // TODO: Align labels to the bottom and center (103)
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  // We want to center the labels, and align the text to the bottom of each card,
+                  // instead of the bottom of each image.
+                  // Move the labels to the end (bottom) of the main axis and change them to be centered::
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   // TODO: Change innermost Column (103)
                   children: <Widget>[
                     // TODO: Handle overflowing labels (103)
                     Text(
                       product.name,
-                      style: theme.textTheme.headline6,
+                      style: theme.textTheme.button,
+                      softWrap: false,
+                      overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                     ),
-                    const SizedBox(height: 8.0),
+                    const SizedBox(height: 4.0),
                     Text(
                       formatter.format(product.price),
-                      style: theme.textTheme.subtitle2,
+                      style: theme.textTheme.caption,
                     ),
                   ],
                 ),
@@ -145,14 +153,18 @@ class HomePage extends StatelessWidget {
         ],
       ),
       // TODO: Add a grid view (102)
-      body: GridView.count(
-        crossAxisCount: 2,
-        padding: const EdgeInsets.all(16.0),
-        //The childAspectRatio: field identifies the size of the items based on an aspect ratio (width over height).
-        childAspectRatio: 8.0 / 9.0,
-        // TODO: Build a grid of cards (102)
-        children: _buildGridCards(context),
+      body: AsymmetricView(
+        products: ProductsRepository.loadProducts(Category.all),
       ),
+      // body: GridView.count(
+      //   crossAxisCount: 2,
+      //   padding: const EdgeInsets.all(16.0),
+      //   //The childAspectRatio: field identifies the size of the items based on an aspect ratio (width over height).
+      //   childAspectRatio: 8.0 / 9.0,
+      //   // TODO: Build a grid of cards (102)
+      //   children: _buildGridCards(context),
+      // ),
+
       // body: Center(
       //   child: Text('You did it!'),
       // ),
