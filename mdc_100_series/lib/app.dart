@@ -49,21 +49,14 @@ ThemeData _buildShrineTheme() {
   final ThemeData base = ThemeData.light();
   return base.copyWith(
     colorScheme: base.colorScheme.copyWith(
-      primary: kShrinePurple,
-      secondary: kShrinePurple,
+      primary: kShrinePink100,
+      onPrimary: kShrineBrown900,
+      secondary: kShrineBrown900,
       error: kShrineErrorRed,
     ),
-    scaffoldBackgroundColor: kShrineSurfaceWhite,
-    // colorScheme: base.colorScheme.copyWith(
-    //   primary: kShrinePink100,
-    //   onPrimary: kShrineBrown900,
-    //   secondary: kShrineBrown900,
-    //   error: kShrineErrorRed,
-    // ),
     textTheme: _buildShrineTextTheme(base.textTheme),
     textSelectionTheme: const TextSelectionThemeData(
-      // selectionColor: kShrinePink100,
-      selectionColor: kShrinePurple,
+      selectionColor: kShrinePink100,
     ),
     // TODO: Decorate the inputs (103)
     inputDecorationTheme: const InputDecorationTheme(
@@ -71,12 +64,11 @@ ThemeData _buildShrineTheme() {
       focusedBorder: CutCornersBorder(
         borderSide: BorderSide(
           width: 2.0,
-          // color: kShrineBrown900,
-          color: kShrinePurple,
+          color: kShrineBrown900,
         ),
       ),
       floatingLabelStyle: TextStyle(
-        color: kShrinePurple,
+        color: kShrineBrown900,
       ),
     ),
   );
