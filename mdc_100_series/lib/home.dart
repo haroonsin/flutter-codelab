@@ -20,7 +20,10 @@ import 'model/product.dart';
 import 'model/products_repository.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  // TODO: Add a variable for Category (104)
+  final Category category;
+
+  const HomePage({this.category = Category.all, Key? key}) : super(key: key);
 
   // TODO: Make a collection of cards (102)
   List<Card> _buildGridCards(BuildContext context) {
@@ -119,58 +122,62 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: Return an AsymmetricView (104)
-    // TODO: Pass Category variable to AsymmetricView (104)
-    return Scaffold(
-      // TODO: Add app bar (102)
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(
-            Icons.menu,
-            semanticLabel: "Menu Button",
-          ),
-          onPressed: () {},
-        ),
-        title: const Text("Shrine"),
-        actions: [
-          IconButton(
-            onPressed: () {
-              print('Search button clicked');
-            },
-            icon: const Icon(
-              Icons.search,
-              semanticLabel: "Search",
-            ),
-          ),
-          IconButton(
-            onPressed: () {
-              print('Filter button clicked');
-            },
-            icon: const Icon(
-              Icons.tune,
-              semanticLabel: "Filter",
-            ),
-          ),
-        ],
-      ),
-      // TODO: Add a grid view (102)
-      body: AsymmetricView(
-        products: ProductsRepository.loadProducts(Category.all),
-      ),
-      // body: GridView.count(
-      //   crossAxisCount: 2,
-      //   padding: const EdgeInsets.all(16.0),
-      //   //The childAspectRatio: field identifies the size of the items based on an aspect ratio (width over height).
-      //   childAspectRatio: 8.0 / 9.0,
-      //   // TODO: Build a grid of cards (102)
-      //   children: _buildGridCards(context),
-      // ),
-
-      // body: Center(
-      //   child: Text('You did it!'),
-      // ),
-      // TODO: Set resizeToAvoidBottomInset (101)
-      //Doing this ensures that the keyboard's appearance does not alter the size of the home page or its widgets.
-      resizeToAvoidBottomInset: false,
+    return AsymmetricView(
+      // TODO: Pass Category variable to AsymmetricView (104)
+      products: ProductsRepository.loadProducts(category),
     );
+    // TODO: Pass Category variable to AsymmetricView (104)
+    // return Scaffold(
+    //   // TODO: Add app bar (102)
+    //   appBar: AppBar(
+    //     leading: IconButton(
+    //       icon: const Icon(
+    //         Icons.menu,
+    //         semanticLabel: "Menu Button",
+    //       ),
+    //       onPressed: () {},
+    //     ),
+    //     title: const Text("Shrine"),
+    //     actions: [
+    //       IconButton(
+    //         onPressed: () {
+    //           print('Search button clicked');
+    //         },
+    //         icon: const Icon(
+    //           Icons.search,
+    //           semanticLabel: "Search",
+    //         ),
+    //       ),
+    //       IconButton(
+    //         onPressed: () {
+    //           print('Filter button clicked');
+    //         },
+    //         icon: const Icon(
+    //           Icons.tune,
+    //           semanticLabel: "Filter",
+    //         ),
+    //       ),
+    //     ],
+    //   ),
+    //   // TODO: Add a grid view (102)
+    //   body: AsymmetricView(
+    //     products: ProductsRepository.loadProducts(Category.all),
+    //   ),
+    //   // body: GridView.count(
+    //   //   crossAxisCount: 2,
+    //   //   padding: const EdgeInsets.all(16.0),
+    //   //   //The childAspectRatio: field identifies the size of the items based on an aspect ratio (width over height).
+    //   //   childAspectRatio: 8.0 / 9.0,
+    //   //   // TODO: Build a grid of cards (102)
+    //   //   children: _buildGridCards(context),
+    //   // ),
+
+    //   // body: Center(
+    //   //   child: Text('You did it!'),
+    //   // ),
+    //   // TODO: Set resizeToAvoidBottomInset (101)
+    //   //Doing this ensures that the keyboard's appearance does not alter the size of the home page or its widgets.
+    //   resizeToAvoidBottomInset: false,
+    // );
   }
 }
